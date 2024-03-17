@@ -1,0 +1,23 @@
+# dependencies
+/node_modules
+
+# testing
+/coverage
+
+# production
+/dist
+
+# misc
+.DS_Store
+
+npm-debug.log*
+
+/.idea
+/.vscode
+/.env
+sessions.json
+/docker/redis_data
+/data
+
+docker-compose.override.yml
+docker-compose.override.yaml

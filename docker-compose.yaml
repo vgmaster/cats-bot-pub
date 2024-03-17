@@ -1,0 +1,30 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: boobs-bot-beta
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - TOKEN=${TOKEN}
+      - POSTGRES_HOST={POSTGRES_HOST}
+      - POSTGRES_PORT={POSTGRES_PORT}
+      - POSTGRES_DB={POSTGRES_DB}
+      - POSTGRES_USER={POSTGRES_USER}
+      - POSTGRES_PASSWORD={POSTGRES_PASSWORD}
+      - SENTRY_DSN={SENTRY_DSN}
+    volumes:
+      - ./data/logs:/app/data/logs
+      - ./.env:/app/.env
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    ports:
+      - '5432:5432'
+    restart: unless-stopped
